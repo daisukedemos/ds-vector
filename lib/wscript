@@ -1,0 +1,43 @@
+def options(ctx):
+  pass
+    
+def configure(ctx):
+  pass
+
+def build(bld):
+  bld.shlib(
+       source       = 'PrefixSum.cpp PrefixSumNode.cpp PrefixSumLeaf.cpp DyBitVec.cpp DyBitVecNode.cpp DyBitVecLeaf.cpp DyWaveletTree.cpp',
+       target       = 'dybitvec',
+       name         = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       features     = 'gtest',
+       source       = 'DyBitVecLeafTest.cpp',
+       target       = 'dybitvec_leaf_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       features     = 'gtest',
+       source       = 'DyBitVecTest.cpp',
+       target       = 'dybitvec_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       features     = 'gtest',
+       source       = 'PrefixSumLeafTest.cpp',
+       target       = 'prefixsum_leaf_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       features     = 'gtest',
+       source       = 'PrefixSumTest.cpp',
+       target       = 'prefixsum_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       features     = 'gtest',
+       source       = 'DyWaveletTreeTest.cpp',
+       target       = 'dywavelettree_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.install_files('${PREFIX}/include/prefix_sum', bld.path.ant_glob('*.hpp'))

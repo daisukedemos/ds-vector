@@ -1,0 +1,19 @@
+def options(ctx):
+  pass
+    
+def configure(ctx):
+  pass
+
+def build(bld):
+  bld.program(
+       source       = 'PrefixSumPerformanceTest.cpp',
+       target       = 'prefix_sum_performance_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+  bld.program(
+       source       = 'DyBitVecPerformanceTest.cpp',
+       target       = 'dbv_performance_test',
+       use          = 'DYBITVEC',
+       includes     = '.')
+
+
